@@ -5,6 +5,16 @@ var app = express()
 app.set("view engine", "ejs")
 
 
+// Route below
+app.get("/", function(req, res){
+    res.render("home")
+})
+
+app.get("/service", function(req,res){
+    res.render("service")
+})
+
+
 app.get("/team", function(req,res) {
     res.render("team")
 })
