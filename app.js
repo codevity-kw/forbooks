@@ -11,6 +11,7 @@ app.get("/", function(req, res){
 })
 
 app.get("/service", function(req,res){
+    console.log("display service")
     res.render("service")
 })
 
@@ -19,10 +20,7 @@ app.get("/team", function(req,res) {
     res.render("team")
 })
 
-// Route below -->!
-app.get("/", function(req, res){
-    res.render("home")
-})
+
 app.get("/about",function(req,res){
     res.render("about")
     }
