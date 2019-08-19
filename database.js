@@ -1,11 +1,7 @@
 const mysql = require('mysql2');
 
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'codevity',
-    password: '12345678',
-    database: 'forbooks'
-  });
+const connection = require('my_db_config')
+mysql.createConnection(config)
 
   connection.query(
     'create table if not exists products(id INT primary key auto_increment, name VARCHAR(100), image VARCHAR(100), price INT, description TEXT(400), categoryId INT)',

@@ -25,6 +25,9 @@ app.get("/about",function(req,res){
     res.render("about")
     }
     )
+app.get("/form", function(req,res){
+    res.render("form")
+})
 app.listen(3000, function(){
     console.log("Server Start")
 })
