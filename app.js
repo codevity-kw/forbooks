@@ -4,8 +4,9 @@ var express = require("express")
 var bodyParser = require('body-parser')
 var app = express()
 app.set("view engine", "ejs")
-bodyParser.json()
-bodyParser.urlencoded({ extended: false })
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
 
 // Route below
 app.get("/", function(req, res){
@@ -36,21 +37,22 @@ app.get("/about",function(req,res){
 
 
 app.get("/form", function(req,res){
-res.render("form")
+    connection.query("Select * from categories", function(err,result){
+        res.render("form",{categories: result})
+    })
 })
 
 app.post("/create_product",function(req,res){
- connection.query("insert into")
-    res.render("home")
- req.body.email()
- req.body.name()
- req.body.productCategory()
- req.body.bookName()
- req.body.author()
- req.body.genre()
- req.body.description()
- req.body.image()
- req.body.price()
+//  var query = `insert into products(name,image,price,description,categoryId) Values ("${req.body.bookName}", "${req.body.description}")`
+var query = `insert into products(name,description,categoryId) Values ("${req.body.bookName}", "${req.body.description}", ${req.body.productCategory})`
+    connection.query(query,function(error,result){
+        console.log(error, query )
+        res.redirect("/")
+    })
+ 
+//  req.body.productCategory( )
+//  req.body.image()
+//  req.body.price()
 })
 
 app.listen(3000, function(){
