@@ -1,7 +1,7 @@
 const mysql = require('mysql2');
 
-const connection = require('my_db_config')
-mysql.createConnection(config)
+const config = require('my_db_config')
+const connection = mysql.createConnection(config)
 
   connection.query(
     'create table if not exists products(id INT primary key auto_increment, name VARCHAR(100), image VARCHAR(100), price INT, description TEXT(400), categoryId INT)',
@@ -26,3 +26,4 @@ mysql.createConnection(config)
       console.log(fields); // fields contains extra meta data about results, if available
     }
   );
+  module.exports = connection

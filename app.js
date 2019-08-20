@@ -1,4 +1,5 @@
 require("ejs")
+var connection = require("./database")
 var express = require("express")
 var bodyParser = require('body-parser')
 var app = express()
@@ -32,16 +33,17 @@ res.render("form")
 })
 
 app.post("/create_product",function(req,res){
- res.render("home")
- req.body.email
- req.body.name
- req.body.productCategory
- req.body.bookName
- req.body.author
- req.body.genre
- req.body.description
- req.body.image
- req.body.price
+ connection.query("insert into")
+    res.render("home")
+ req.body.email()
+ req.body.name()
+ req.body.productCategory()
+ req.body.bookName()
+ req.body.author()
+ req.body.genre()
+ req.body.description()
+ req.body.image()
+ req.body.price()
 })
 
 app.listen(3000, function(){
