@@ -29,22 +29,20 @@ app.get("/about",function(req,res){
 
 
 app.get("/form", function(req,res){
-res.render("form")
+    connection.query("Select * from categories", function(err,result){
+        res.render("form",{categories: result})
+    })
 })
 
-app.post("/create_product",function(req,res){
- connection.query("insert into")
-    res.render("home")
- req.body.email()
- req.body.name()
- req.body.productCategory()
- req.body.bookName()
- req.body.author()
- req.body.genre()
- req.body.description()
- req.body.image()
- req.body.price()
-})
+// app.post("/create_product",function(req,res){
+//  connection.query("insert into")
+//  res.render("home")
+//  req.body.productCategory( )
+//  req.body.bookName()
+//  req.body.description()
+//  req.body.image()
+//  req.body.price()
+// })
 
 app.listen(3000, function(){
     console.log("Server Start")
