@@ -9,7 +9,14 @@ bodyParser.urlencoded({ extended: false })
 
 // Route below
 app.get("/", function(req, res){
-    res.render("home")
+    connection.query("select * from products", function(err, result){
+        console.log(err)
+        console.log(result)
+        res.render("home", {
+            products: result
+        })
+    })
+    
 })
 
 app.get("/service", function(req,res){
