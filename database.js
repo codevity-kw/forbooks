@@ -1,13 +1,7 @@
 const mysql = require('mysql2');
 
-<<<<<<< HEAD
-  var config = require('my_db_config')
-  mysql.createConnection(config)
-
-=======
 const config = require('my_db_config')
 const connection = mysql.createConnection(config)
->>>>>>> 2f804a5d7fbfef27eb166bbe88f91786f3608cd6
 
   connection.query(
     'create table if not exists products(id INT primary key auto_increment, name VARCHAR(100), image VARCHAR(100), price INT, description TEXT(400), categoryId INT)',
