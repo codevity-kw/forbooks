@@ -19,8 +19,7 @@
 
                  <div class="form-group">
                          <label for="Category">Category</label>
-                         <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                <option selected>Category</option>
+                         <select class="custom-select my-1 mr-sm-2" name=productCategory id="inlineFormCustomSelectPref">
                                 <% categories.forEach(c => { %>
                                     <option value="<%=c.id%>">
                                     <%= c.genre %>
