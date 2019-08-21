@@ -11,11 +11,23 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // Route below
 app.get("/", function(req, res){
     connection.query("select * from products", function(err, result){
-               res.render("home", {
-            products: result
-        })
+        console.log(err)
+        console.log(result)
+        if(req.query.lang=="ar"){
+            res.render("home_arabic", {
+                products: result
+            })
+        }  else{
+            res.render("home", {products: result})
+        }
+   
     })
     
+})
+app.get("/dashboard/:id", function(req,res){
+    connection.query(`select * from products where sellerId = ${req.params.id}`, function(err, result){
+        res.render("home", {products: result})
+    })
 })
 
 app.get("/test_delete", function(req, res){

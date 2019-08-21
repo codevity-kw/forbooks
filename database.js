@@ -27,6 +27,14 @@ const connection = mysql.createConnection(config)
     }
   );
 
+  connection.query(
+    'alter table products add sellerId INT(2)',
+    function(err, result){
+    console.log(err)
+    console.log(result)
+
+    }
+  );
 
   // insert into categories(genre) VALUES("education")
   // insert into categories(genre) VALUES("education") VALUES("education") VALUES("education");
