@@ -13,9 +13,41 @@ app.get("/", function(req, res){
     connection.query("select * from products", function(err, result){
         console.log(err)
         console.log(result)
-        res.render("home", {
-            products: result
-        })
+        if(req.query.lang=="ar"){
+            res.render("home_arabic", {
+                products: result
+            })
+        }  else{
+            res.render("home", {products: result})
+        }
+   
+    })
+    
+})
+app.get("/dashboard/:id", function(req,res){
+    connection.query(`select * from products where sellerId = ${req.params.id}`, function(err, result){
+        res.render("home", {products: result})
+    })
+})
+
+app.get("/test_delete", function(req, res){
+    res.render("test_delete")
+})
+
+app.get("/product/delete/:id", function(req, res){
+    var query = `delete from products where id= ${req.params.id}`
+    console.log(req.params.id, query)
+
+    connection.query(query, function(err, result){
+        res.redirect("/")
+    })
+    
+})
+
+app.post("/product/update/:id", function(req, res){
+    var query = `update products set name = ${req.body.name}, image = ${req.body.image}, price = ${req.body.price}, description = ${req.body.description}, categoryId = ${req.body.categoryId}`
+        connection.query(query, function(err, result){
+        res.redirect("/")
     })
     
 })
@@ -39,6 +71,16 @@ app.get("/about",function(req,res){
 app.get("/form", function(req,res){
     connection.query("Select * from categories", function(err,result){
         res.render("form",{categories: result})
+    })
+})
+
+
+app.get("/search", function(req, res){
+            connection.query(`select * from products where LCASE(name) LIKE "%${req.query.search.toLowerCase()}%" OR LCASE(description) LIKE "%${req.query.search.toLowerCase()}%"`, function(err, result){
+        console.log('--->',result)
+        res.render("home", {
+            products: result
+        })
     })
 })
 
