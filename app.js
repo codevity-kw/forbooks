@@ -36,16 +36,11 @@ app.get("/form", function(req,res){
 })
 
 app.post("/create_product",function(req,res){
-//  var query = `insert into products(name,image,price,description,categoryId) Values ("${req.body.bookName}", "${req.body.description}")`
-var query = `insert into products(name,description,categoryId) Values ("${req.body.bookName}", "${req.body.description}", ${req.body.productCategory})`
+var query = `insert into products(name,description,categoryId) Values ("${req.body.bookName}", "${req.body.description}", ${req.body.productCategory},${req.body.image()},${req.body.price()})`
     connection.query(query,function(error,result){
         console.log(error, query )
         res.redirect("/")
     })
- 
-//  req.body.productCategory( )
-//  req.body.image()
-//  req.body.price()
 })
 
 app.listen(3000, function(){
