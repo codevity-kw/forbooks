@@ -7,8 +7,31 @@
 
 </head>
 <body>
-    <%- include("navbar")%>
+  
+        <div class="container">
 
+                <%- include("navbar")%>
+        
+                <div class="row mt-5">
+                <% products.forEach(p => { %>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img src="<%= p.image %>" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h5 class="card-title"><%= p.name %> <br/> KD <%= p.price %></h5>
+                              <p class="card-text"> <%= p.description %></p>
+                              <a href="#" class="btn btn-primary">Purchase me</a>
+                            </div>
+                          </div>
+                    </div>
+                     
+                <% }) %>
+            </div>
+        
+        </div>
 
 </body>
+
+
+
 </html>
