@@ -1,6 +1,3 @@
 node_modules
-<<<<<<< HEAD
 my_db_config.js
-=======
-my_db_config.js
->>>>>>> 58cbfbfa650ceea112dbc257a2b31e81793b123d
+views/test_delete.ejs
