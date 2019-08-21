@@ -26,7 +26,7 @@ app.get("/", function(req, res){
 })
 app.get("/dashboard/:id", function(req,res){
     connection.query(`select * from products where sellerId = ${req.params.id}`, function(err, result){
-        res.render("home", {products: result})
+        res.render("dashboard", {products: result})
     })
 })
 
@@ -34,7 +34,7 @@ app.get("/test_delete", function(req, res){
     res.render("test_delete")
 })
 
-app.get("/product/delete/:id", function(req, res){
+app.get("/products/delete/:id", function(req, res){
     var query = `delete from products where id= ${req.params.id}`
     console.log(req.params.id, query)
 
