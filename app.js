@@ -11,9 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // Route below
 app.get("/", function(req, res){
     connection.query("select * from products", function(err, result){
-        console.log(err)
-        console.log(result)
-        res.render("home", {
+               res.render("home", {
             products: result
         })
     })
@@ -64,8 +62,18 @@ app.get("/form", function(req,res){
     })
 })
 
+
+app.get("/search", function(req, res){
+            connection.query(`select * from products where LCASE(name) LIKE "%${req.query.search.toLowerCase()}%" OR LCASE(description) LIKE "%${req.query.search.toLowerCase()}%"`, function(err, result){
+        console.log('--->',result)
+        res.render("home", {
+            products: result
+        })
+    })
+})
+
 app.post("/create_product",function(req,res){
-var query = `insert into products(name,description,categoryId) Values ("${req.body.bookName}", "${req.body.description}", ${req.body.productCategory},${req.body.image()},${req.body.price()})`
+    var query = `insert into products(name,description,categoryId) Values ("${req.body.bookName}", "${req.body.description}", ${req.body.productCategory},${req.body.image()},${req.body.price()})`
     connection.query(query,function(error,result){
         console.log(error, query )
         res.redirect("/")
