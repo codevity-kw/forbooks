@@ -4,18 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Form</title>
+    <title>Update Product</title>
 </head>
 <body>
     
         <%- include("navbar")%>
         <div class="container mt-5">
-        <form action="/create_product" method="POST">
-                
+        <form action="/update/products/<%= product.id %>" method="POST">
 
                 <div class="form-group">
                         <label for="BookName">Book Name</label>
-                        <input type="text" class="form-control" id="'BookName" name="bookName" placeholder="Name">
+                        <input type="text" class="form-control" value="<%=product.name %>" id="'BookName" name="bookName" placeholder="Name">
                         </div>
 
                  <div class="form-group">
@@ -30,16 +29,16 @@
                          </div>
                 <div class="form-group">
                         <label for="Description">Description</label>
-                        <input type="text" class="form-control" id="Description" name="description" placeholder="Name">
+                        <input type="text" class="form-control" value="<%=product.description %>" id="Description" name="description" placeholder="Please describe the product">
                         </div>
                               
-                <div class="form-group">
-                        <label for="image"> Book Image</label>
-                        <input type="file" class="form-control-file" id="image" name="bookImage">
-                        </div>
+                 <div class="form-group">
+                        <label for="image">Book Image</label>
+                        <input type="text" class="form-control" value="<%=product.image %>" id="image" name="image" placeholder="Please enter image address">
+                         </div>
                  <div class="form-group">
                          <label for="Price">Price</label>
-                         <input type="integer" class="form-control" id="Price" name="price" placeholder="in KD">
+                         <input type="integer" class="form-control" value="<%=product.price %>" id="Price" name="price" placeholder="in KD">
                          </div>                                
 
                 <input type="submit" class="btn btn-primary"></button>
