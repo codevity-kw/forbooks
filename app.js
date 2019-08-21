@@ -100,7 +100,7 @@ app.post("/update/products/:productId",function(req,res){
         })
     })
 
-app.get("/edit/products/:productId",function (req,res){
+app.get("/products/edit/:productId",function (req,res){
     connection.query(`select * from products where id="${req.params.productId}"`, function(err,resultproduct){
         connection.query("Select * from categories", function(err,resultcategories){
             res.render("edit",{
