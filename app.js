@@ -3,6 +3,8 @@ var connection = require("./database")
 var express = require("express")
 var bodyParser = require('body-parser')
 var app = express()
+var port = process.env.PORT || 3000;
+
 app.set("view engine", "ejs")
 
 app.use(bodyParser.json())
@@ -108,6 +110,8 @@ app.get("/products/edit/:productId",function (req,res){
     // product = result[0]
     // res.render()
 
-app.listen(3000, function(){
+
+
+app.listen(port, function(){
     console.log("Server Start")
 })
