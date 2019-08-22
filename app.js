@@ -70,7 +70,7 @@ app.get("/about",function(req,res){
 
 app.get("/form", function(req,res){
     connection.query("Select * from categories", function(err,result){
-        res.render("form",{categories: result})
+        res.render("form_products",{categories: result})
     })
 })
 
