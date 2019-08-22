@@ -46,8 +46,6 @@ const connection = mysql.createConnection(config)
   );
 
 
-
-
   // insert into categories(genre) VALUES("education")
   // insert into categories(genre) VALUES("education") VALUES("education") VALUES("education");
 

@@ -59,10 +59,42 @@ app.get("/about",function(req,res){
     res.render("about")
     })
 
+app.get("/register",function(req,res){
+        res.render("form_register")
+        })
+
+app.post("/register",function(req,res){
+    connection.query(`insert into sellers(name, email, password) values("${req.body.name}", "${req.body.email}", "${req.body.password}")`, function(err, result){
+        res.redirect("/")
+    })
+})
+    
+app.get("/login",function(req,res){
+    res.render("form_login")
+})
+
+
+app.post("/login",function(req,res){
+    var query = `select * from sellers where email = "${req.body.email}" and password = "${req.body.password}"`
+    connection.query(query, function(err, result){
+       console.log(result, query)
+        if(result.length > 0){
+            res.redirect("/dashboard/1")
+        } else {
+            res.send("Login Failed")
+        }
+        
+    })
+})
+   
+    
+
+
+
 
 app.get("/form", function(req,res){
     connection.query("Select * from categories", function(err,result){
-        res.render("form",{categories: result})
+        res.render("form_products",{categories: result})
     })
 })
 
