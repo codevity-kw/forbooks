@@ -44,14 +44,6 @@ app.get("/products/delete/:id", function(req, res){
     
 })
 
-app.post("/product/update/:id", function(req, res){
-    var query = `update products set name = ${req.body.name}, image = ${req.body.image}, price = ${req.body.price}, description = ${req.body.description}, categoryId = ${req.body.categoryId}`
-        connection.query(query, function(err, result){
-        res.redirect("/")
-    })
-    
-})
-
 app.get("/service", function(req,res){
     console.log("display service")
     res.render("service")
@@ -85,12 +77,36 @@ app.get("/search", function(req, res){
 })
 
 app.post("/create_product",function(req,res){
-    var query = `insert into products(name,description,categoryId) Values ("${req.body.bookName}", "${req.body.description}", ${req.body.productCategory},${req.body.image()},${req.body.price()})`
+var query = `insert into products(name,description,categoryId,image,price) Values ("${req.body.bookName}", "${req.body.description}", ${req.body.productCategory},"${req.body.image}",${req.body.price})`
     connection.query(query,function(error,result){
         console.log(error, query )
         res.redirect("/")
     })
 })
+
+app.post("/products/update/:productId",function(req,res){
+    var query = `update products set name="${req.body.bookName}",description="${req.body.description}",categoryId=${req.body.productCategory},image='${req.body.image}',price=${req.body.price} WHERE id="${req.params.productId}"`
+        connection.query(query,function(error,result){
+            console.log(error, query )
+            res.redirect("/")
+        })
+    })
+
+app.get("/products/edit/:productId",function (req,res){
+    connection.query(`select * from products where id="${req.params.productId}"`, function(err,resultproduct){
+        connection.query("Select * from categories", function(err,resultcategories){
+            res.render("edit",{
+                product: resultproduct[0],
+                categories: resultcategories
+           })
+        })
+       
+    })
+ })
+
+    // "select * from products where id = req.params.id", err, result
+    // product = result[0]
+    // res.render()
 
 app.listen(3000, function(){
     console.log("Server Start")
