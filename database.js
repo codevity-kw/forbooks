@@ -5,7 +5,10 @@ if(process.env.NODE_ENV == "production"){
     host:"us-cdbr-iron-east-02.cleardb.net",
     user:"ba7b555b58eb19",
     password:"96170143",
-    database: "heroku_3d2c931093454bd"
+    database: "heroku_3d2c931093454bd",
+    waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
   }
 }else{
   var config = require('./my_db_config')
@@ -13,7 +16,7 @@ if(process.env.NODE_ENV == "production"){
 
 
 
-const connection = mysql.createConnection(config)
+const connection = mysql.createPool(config)
 
   connection.query(
     'create table if not exists products(id INT primary key auto_increment, name VARCHAR(100), image VARCHAR(100), price INT, description TEXT(400), categoryId INT)',
