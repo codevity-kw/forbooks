@@ -1,6 +1,17 @@
 const mysql = require('mysql2');
 
-const config = require('./my_db_config')
+if(process.env.NODE_ENV == "production"){
+  var config = {
+    host:"us-cdbr-iron-east-02.cleardb.net",
+    user:"ba7b555b58eb19",
+    password:"96170143",
+    database: "heroku_3d2c931093454bd"
+  }
+}else{
+  var config = require('./my_db_config')
+}
+
+
 const connection = mysql.createConnection(config)
 
   connection.query(
