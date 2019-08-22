@@ -59,6 +59,17 @@ app.get("/about",function(req,res){
     res.render("about")
     })
 
+app.get("/register",function(req,res){
+        res.render("form_register")
+        })
+
+app.post("/register",function(req,res){
+    connection.query(`insert into sellers(name, email, password) values("${req.body.name}", "${req.body.email}", "${req.body.password}")`, function(err, result){
+        res.redirect("/")
+    })
+})
+    
+
 
 app.get("/form", function(req,res){
     connection.query("Select * from categories", function(err,result){
