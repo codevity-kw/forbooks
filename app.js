@@ -44,14 +44,6 @@ app.get("/products/delete/:id", function(req, res){
     
 })
 
-app.post("/product/update/:id", function(req, res){
-    var query = `update products set name = ${req.body.name}, image = ${req.body.image}, price = ${req.body.price}, description = ${req.body.description}, categoryId = ${req.body.categoryId}`
-        connection.query(query, function(err, result){
-        res.redirect("/")
-    })
-    
-})
-
 app.get("/service", function(req,res){
     console.log("display service")
     res.render("service")
@@ -92,7 +84,7 @@ var query = `insert into products(name,description,categoryId,image,price) Value
     })
 })
 
-app.post("/update/products/:productId",function(req,res){
+app.post("/products/update/:productId",function(req,res){
     var query = `update products set name="${req.body.bookName}",description="${req.body.description}",categoryId=${req.body.productCategory},image='${req.body.image}',price=${req.body.price} WHERE id="${req.params.productId}"`
         connection.query(query,function(error,result){
             console.log(error, query )
