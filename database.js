@@ -51,14 +51,14 @@ const connection = mysql.createPool(config)
   //   }
   // );
 
-  connection.query(
-    'alter table sellers add password VARCHAR(20)',
-    function(err, result){
-    console.log(err)
-    console.log(result)
+  // connection.query(
+  //   'alter table sellers add password VARCHAR(20)',
+  //   function(err, result){
+  //   console.log(err)
+  //   console.log(result)
 
-    }
-  );
+  //   }
+  // );
 
 
   // insert into categories(genre) VALUES("education")
